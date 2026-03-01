@@ -1,0 +1,13 @@
+{
+  "name": "smart-study-platform",
+  "private": true,
+  "workspaces": ["server", "client"],
+  "scripts": {
+    "install:all": "npm install --workspaces",
+    "dev": "concurrently \"npm run dev -w server\" \"npm run dev -w client\"",
+    "lint": "npm run lint -w server && npm run lint -w client"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

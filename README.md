@@ -1,127 +1,100 @@
-# Smart Study Group Matching Platform
+# Smart Study Group Matching & Collaborative Learning Platform
 
+A full-stack MERN application to intelligently match students into productive study groups and support collaborative learning with real-time chat, scheduling, analytics, and feedback.
 
-## Task Description
-Smart Study Group Matching & Collaborative Learning Platform
-🎯 Objective
+## Core Features
 
-The task is to design and develop a full-stack MERN-based web application that helps students find compatible study partners and collaborate effectively through intelligent matching, real-time communication, and structured study management tools.
+- **JWT Authentication** with bcrypt password hashing.
+- **Smart Matching Engine** using compatibility scoring for subjects, availability, goals, and study style.
+- **Study Group Management** (create, list, join, rules and descriptions).
+- **Real-Time Group Chat** with Socket.io and persistent message history.
+- **Study Session Scheduling** with conflict checking and optional reminder notifications via Nodemailer.
+- **Progress Tracking Analytics** (hours, attendance, weekly achievements).
+- **Feedback System** (productivity/cooperation ratings + comments).
+- **Collaborative Task Board** for group todo/in-progress/done workflows with assignees and due dates.
+- **Group Leaderboard** ranking members by study hours and peer feedback scores.
+- **Group Audio/Video Calls** using instant Jitsi room links for each study group.
+- **Live Time Display** in group workspace for schedule awareness.
+- **File Upload in Group Chat** for sharing notes/resources directly in conversations.
+- **Group Capacity Auto-Close** to stop joins once max member count is reached.
+- **Announcement Board** (new) for owner-posted notices visible to all members.
+- **Resource Sharing Ready** using Cloudinary upload endpoint.
 
-The system aims to improve academic collaboration by creating organized and productivity-focused study groups instead of random or unstructured communication channels.
+## Tech Stack
 
-🧩 Problem Statement
+- **Frontend:** React, React Router, Axios, Socket.io-client, Vite
+- **Backend:** Node.js, Express, MongoDB Atlas + Mongoose, Socket.io
+- **Auth:** JWT + bcryptjs
+- **Storage/Notifications:** Cloudinary, Nodemailer
 
-Students often face several challenges when studying in groups, such as:
+## Project Structure
 
-Random group formation without compatibility
+- `server/` – REST API, Socket.io server, Mongo models/controllers/routes
+- `client/` – React UI for auth, matching dashboard, groups, and chat
 
-Lack of structured scheduling
+## Quick Start
 
-Unorganized group communication
+### 1) Install dependencies
 
-Different study styles and availability
+```bash
+npm install
+```
 
-Difficulty in finding suitable study partners
+### 2) Configure environment
 
-No proper progress tracking system
+Create `server/.env` (or copy from `server/.env.example`):
 
-These problems reduce learning efficiency and collaboration effectiveness.
+```env
+PORT=5000
+MONGO_URI=mongodb+srv://<username>:<url_encoded_password>@cluster0.t2mg76e.mongodb.net/smart_study_platform?retryWrites=true&w=majority&appName=Cluster0
+JWT_SECRET=super_secret
 
-💡 Proposed Solution
+# Optional integrations
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
 
-The proposed platform provides an intelligent and structured learning environment by:
+SMTP_HOST=
+SMTP_PORT=587
+SMTP_USER=
+SMTP_PASS=
+SMTP_FROM=
+```
 
-Matching students based on subjects, availability, and study style
+> If your password contains special characters (for example `@`), URL-encode it in `MONGO_URI`.
+> Example: `Mathi@5665` becomes `Mathi%405665`.
 
-Allowing users to create and manage study groups
+Create `client/.env` (optional):
 
-Providing real-time group chat and collaboration tools
+```env
+VITE_API_URL=http://localhost:5000/api
+VITE_SOCKET_URL=http://localhost:5000
+```
 
-Enabling scheduling of study sessions
+### 3) Run development
 
-Tracking learning progress using analytics dashboards
+```bash
+npm run dev
+```
 
-Supporting resource sharing and feedback collection
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:5000`
 
-⚙️ Functional Requirements
-1. User Authentication
+## Main API Endpoints
 
-User registration and login
+- `POST /api/auth/register`, `POST /api/auth/login`
+- `GET /api/matching`
+- `GET/POST /api/groups`, `POST /api/groups/:groupId/join`, `PATCH /api/groups/:groupId/settings`
+- `GET /api/groups/:groupId/announcements`, `POST /api/groups/:groupId/announcements`
+- `GET /api/groups/:groupId/call`, `POST /api/groups/:groupId/call/:callType` (`callType` = `audio` or `video`)
+- `GET /api/chat/:groupId/messages`, `POST /api/chat/upload` (multipart with `resource` + `groupId`)
+- `POST /api/sessions`, `PATCH /api/sessions/:sessionId/attendance`, `GET /api/sessions/analytics/me`
+- `POST /api/feedback`, `GET /api/feedback/user/:userId`
+- `GET/POST /api/tasks/group/:groupId`, `PATCH /api/tasks/:taskId/status`, `PATCH /api/tasks/:taskId/assign`
+- `GET /api/sessions/leaderboard/:groupId`
 
-JWT-based authentication
+## Socket Events
 
-Secure password encryption using bcrypt
+- `join-group` – join a group room
+- `group-message` – send/receive group messages in real time
 
-Protected APIs
-
-2. Smart Matching System
-
-Calculate compatibility score between users
-
-Match based on:
-
-Subject similarity
-
-Availability overlap
-
-Study style compatibility
-
-Goal similarity
-
-Return best study partners and groups
-
-3. Study Group Management
-
-Create study groups
-
-Join and manage groups
-
-Set group descriptions and rules
-
-4. Real-Time Chat System
-
-Group messaging using Socket.io
-
-Live message updates
-
-Message history storage
-
-File and notes sharing
-
-5. Study Session Scheduling
-
-Schedule study sessions
-
-Set date and time
-
-Reminder notifications
-
-Conflict checking
-
-6. Progress Tracking
-
-Track study hours
-
-Attendance monitoring
-
-Session count
-
-Weekly achievements and analytics
-
-7. Feedback System
-
-Post-session productivity rating
-
-Cooperation rating
-
-Feedback comments stored for future matching improvement
-
-🧱 Technology Stack
-
-Frontend: React.js, Axios, React Router
-Backend: Node.js, Express.js, REST API
-Database: MongoDB Atlas with Mongoose
-Real-time: Socket.io
-Authentication: JWT & bcrypt
-File Storage: Cloudinary
-Notifications (Optional): Nodemailer

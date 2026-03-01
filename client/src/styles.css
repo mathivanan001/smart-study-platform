@@ -1,0 +1,22 @@
+body { font-family: Arial, sans-serif; margin: 0; background: #f5f7fb; }
+nav { display: flex; justify-content: space-between; align-items: center; background: #1f2a44; color: white; padding: 1rem; }
+nav a, nav button { margin-left: 0.8rem; color: white; background: transparent; border: 1px solid #fff3; padding: 0.4rem 0.7rem; border-radius: 6px; text-decoration: none; }
+.app { padding: 1rem; }
+.card { background: white; border-radius: 10px; padding: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 1rem; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.row { display: flex; gap: 0.6rem; align-items: center; margin-bottom: 0.5rem; }
+input, button { padding: 0.5rem; border-radius: 6px; border: 1px solid #d0d7e2; }
+.chat-list { max-height: 250px; overflow: auto; background: #f8f9fd; border: 1px solid #e7ebf4; padding: 0.5rem; }
+.wrap { flex-wrap: wrap; }
+.task-row { border: 1px solid #e6ebf3; border-radius: 8px; padding: 0.7rem; margin: 0.6rem 0; display: flex; justify-content: space-between; gap: 0.8rem; }
+select { padding: 0.45rem; border: 1px solid #d0d7e2; border-radius: 6px; }
+.error { color: #b42318; background: #fdecea; border: 1px solid #f3b5ad; padding: 0.5rem; border-radius: 6px; }
+.muted { color: #475467; font-size: 0.92rem; }
+.call-card { margin-top: 0.8rem; border: 1px solid #e4e7ec; }
+a { color: #175cd3; }
+.file-upload-btn { border: 1px solid #98a2b3; border-radius: 6px; padding: 0.45rem 0.75rem; cursor: pointer; background: #f8fafc; }
+.badge { font-size: 0.75rem; border-radius: 999px; padding: 0.15rem 0.55rem; }
+.badge.open { background: #ecfdf3; color: #067647; }
+.badge.closed { background: #fef3f2; color: #b42318; }
+.group-row { border-bottom: 1px dashed #e4e7ec; padding-bottom: 0.4rem; }
+.announcement-list { background: #f8fafc; border: 1px solid #e4e7ec; border-radius: 8px; padding: 0.6rem; max-height: 150px; overflow: auto; }
